@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFM Tips for Sheet Metal Parts | Tesla Mechanical Designs</title>
+    <meta name="description" content="Master sheet metal DFM with tips on tooling, bend spacing, and feature placement. Reduce fabrication costs and improve part consistency.">
+    
+    <!-- SEO & Open Graph -->
+    <link rel="canonical" href="https://teslamechanicaldesigns.com/blog/sheet-metal-dfm-tips">
+    <meta property="og:title" content="DFM Tips for Sheet Metal Parts | Tesla Mechanical Designs">
+    <meta property="og:description" content="Discover how to design sheet metal parts that are easy to form, repeat, and assemble.">
+    <meta property="og:image" content="images/sheet-metal.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg-light: #ffffff;
+            --bg-dark: #0f172a;
+            --text-light: #1f2937;
+            --text-dark: #f1f5f9;
+            --nav-bg-light: rgba(255, 255, 255, 0.9);
+            --nav-bg-dark: rgba(15, 23, 42, 0.9);
+            --border-light: #e5e7eb;
+            --border-dark: #1e293b;
+            --hero-bg-dot: #e5e7eb;
+            --hero-bg-size: 40px 40px;
+
+            /* Default Theme Variables */
+            --bg: var(--bg-light);
+            --text: var(--text-light);
+            --nav-bg: var(--nav-bg-light);
+            --border: var(--border-light);
+            --hero-bg: radial-gradient(circle at 2px 2px, var(--hero-bg-dot) 1px, transparent 0);
+        }
+
+        .dark {
+            --bg: var(--bg-dark);
+            --text: var(--text-dark);
+            --nav-bg: var(--nav-bg-dark);
+            --border: var(--border-dark);
+            --hero-bg-dot: #334155;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text);
+            margin-top: 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            padding: 0.4rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background-image: var(--hero-bg);
+            background-size: var(--hero-bg-size);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(0deg, var(--bg) 0%, transparent 100%);
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            padding: 0 2rem;
+        }
+
+        main {
+            min-width: 0;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-content a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .internal-link-box {
+            background: var(--border);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+            margin: 2rem 0;
+        }
+
+        /* Sidebar & TOC */
+        aside {
+            position: relative;
+        }
+
+        .sidebar-sticky {
+            position: sticky;
+            top: 6rem;
+        }
+
+        .toc {
+            background-color: var(--bg);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            opacity: 0.8;
+        }
+
+        .toc a:hover {
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            aside {
+                order: 2;
+            }
+            .sidebar-sticky {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0.75rem 1rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            Tesla Mechanical Designs
+        </a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+            <svg id="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg id="sun" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <h1 id="main-title">DFM Tips for Sheet Metal Parts: Tooling, Bends, and Feature Spacing</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <article class="post-content">
+                <p>Sheet metal DFM is about designing parts that can be formed cleanly, repeatably, and without unnecessary tooling complications. The goal is to ensure the part can be cut, bent, and assembled using standard shop methods while keeping costs and distortion under control.</p>
+
+                <img src="images/sheet-metal.png" alt="A detailed 3D illustration of a sheet metal enclosure showing technical DFM features" loading="lazy">
+
+                <h2 id="why-sheet-metal-dfm">Why Sheet Metal DFM Matters</h2>
+                <p>Sheet metal parts are often chosen for their efficiency, lightweight design, and scalability. But those advantages disappear quickly if the design includes difficult bends, cramped features, or unnecessary forming steps. A design that ignores tooling limits usually becomes slower to produce and more expensive.</p>
+
+                <p>Good sheet metal DFM reduces trial-and-error in fabrication and improves part consistency, regardless of batch size.</p>
+
+                <h2 id="right-tooling">Choose the Right Tooling</h2>
+                <p>The first DFM decision is matching the design to the forming method. A press brake is usually better for low-volume work because the tooling cost is lower and the setup is faster. A progressive die is better suited to high-volume production because it can produce parts quickly and consistently, though the tooling cost is much higher.</p>
+
+                <p>The wrong tooling choice can make a simple part unnecessarily expensive. So the design should support the intended production volume from the beginning.</p>
+
+                <h2 id="foldability">Design for Foldability</h2>
+                <p>A sheet-metal part must be able to bend with standard tools. If the geometry requires internal flanges, inaccessible bends, or unusual forming sequences, the design should be reconsidered. Features that seem minor in CAD can become impossible or costly in the shop.</p>
+
+                <p>The safest approach is to keep the bend strategy simple and practical. Every extra bend increases risk, especially if the part must be formed with tight tolerances.</p>
+
+                <h2 id="spacing">Control Bend and Feature Spacing</h2>
+                <p>Spacing matters in sheet metal because closely placed features can interfere with bending and may distort during forming. Holes, slots, edges, and bends need enough separation to avoid deformation and cracking.</p>
+
+                <p>As a rule, the more compact the geometry, the more likely the part is to require special handling. When possible, place features far enough from bend lines to preserve formability and dimensional stability.</p>
+
+                <h2 id="simplicity">Reduce Unnecessary Complexity</h2>
+                <p>Every sheet-metal part should be checked for features that add cost without value. Extra bends, complicated cutouts, and poorly placed holes often increase setup time and scrap risk. If two simpler parts can perform the same job, the simpler solution is usually the better DFM choice.</p>
+
+                <p>This is especially important when the part is part of a larger assembly. A small simplification in a single bracket or enclosure can significantly reduce the total fabrication effort.</p>
+
+                <h2 id="material-considerations">Material and Thickness Considerations</h2>
+                <p>Material choice affects how well the part bends and how much springback it will have after forming. Thicker or harder materials often require more force and are less forgiving during bending operations. That means the design should account for the selected material early, not after the drawing is already finished.</p>
+
+                <p>Thickness should also be kept consistent where possible. Large variations in sheet geometry can complicate forming and make the part harder to control.</p>
+
+
+
+                <h2 id="checklist">Practical DFM Checklist for Sheet Metal</h2>
+                <ul>
+                    <li>Are bends feasible with standard shop tools?</li>
+                    <li>Are holes and slots placed far enough from bend lines?</li>
+                    <li>Is the material suitable for the bend radius?</li>
+                    <li>Can the part be made without a special setup?</li>
+                    <li>Are there features that can be simplified?</li>
+                    <li>Does the design match the intended production volume?</li>
+                </ul>
+                <p>These checks help avoid fabrication issues before the first part is made.</p>
+            </article>
+        </main>
+
+        <aside>
+            <div class="sidebar-sticky">
+                <div class="toc">
+                    <h3>Table of Contents</h3>
+                    <ul id="toc-list">
+                        <!-- Auto generated -->
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+            <a href="/contact">Contact Us</a>
+        </div>
+        <p>&copy; 2026 Tesla Mechanical Designs. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Theme Toggle Logic
+        const toggleBtn = document.getElementById('theme-toggle');
+        const sun = document.getElementById('sun');
+        const moon = document.getElementById('moon');
+        
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            sun.style.display = 'block';
+            moon.style.display = 'none';
+        } else {
+            document.documentElement.classList.remove('dark');
+            sun.style.display = 'none';
+            moon.style.display = 'block';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            sun.style.display = isDark ? 'block' : 'none';
+            moon.style.display = isDark ? 'none' : 'block';
+        });
+
+        // TOC Generation Logic
+        const tocList = document.getElementById('toc-list');
+        const headers = document.querySelectorAll('main h2, main h3');
+        
+        headers.forEach(header => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            const id = header.id || header.textContent.toLowerCase().replace(/\s+/g, '-');
+            header.id = id;
+            a.href = `#${id}`;
+            a.textContent = header.textContent;
+            li.appendChild(a);
+            
+            if (header.tagName === 'H3') {
+                li.style.paddingLeft = '1rem';
+            }
+            
+            tocList.appendChild(li);
+        });
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "DFM Tips for Sheet Metal Parts: Tooling, Bends, and Feature Spacing",
+      "image": "images/sheet-metal.png",
+      "author": {
+        "@type": "Organization",
+        "name": "Tesla Mechanical Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Tesla Mechanical Designs",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://teslamechanicaldesigns.com/logo.png"
+        }
+      },
+      "datePublished": "2026-04-15",
+      "description": "Master sheet metal DFM with tips on tooling, bend spacing, and feature placement."
+    }
+    </script>
+</body>
+</html>
