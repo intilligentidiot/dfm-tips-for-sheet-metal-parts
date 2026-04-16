@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DFM Tips for Sheet Metal Parts | Tesla Mechanical Designs</title>
-    <meta name="description" content="Master sheet metal DFM with tips on tooling, bend spacing, and feature placement. Reduce fabrication costs and improve part consistency.">
-    
+    <meta name="description"
+        content="Master sheet metal DFM with tips on tooling, bend spacing, and feature placement. Reduce fabrication costs and improve part consistency.">
+
     <!-- SEO & Open Graph -->
     <link rel="canonical" href="https://teslamechanicaldesigns.com/blog/sheet-metal-dfm-tips">
     <meta property="og:title" content="DFM Tips for Sheet Metal Parts | Tesla Mechanical Designs">
-    <meta property="og:description" content="Discover how to design sheet metal parts that are easy to form, repeat, and assemble.">
+    <meta property="og:description"
+        content="Discover how to design sheet metal parts that are easy to form, repeat, and assemble.">
     <meta property="og:image" content="images/sheet-metal.png">
     <meta name="twitter:card" content="summary_large_image">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
             --primary: #2563eb;
@@ -58,7 +62,12 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Roboto', sans-serif;
             color: var(--text);
             margin-top: 2rem;
@@ -106,7 +115,8 @@
             transition: color 0.2s;
         }
 
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--primary);
         }
 
@@ -141,7 +151,10 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: linear-gradient(0deg, var(--bg) 0%, transparent 100%);
             z-index: 1;
         }
@@ -156,8 +169,15 @@
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Layout */
@@ -270,29 +290,57 @@
             .container {
                 grid-template-columns: 1fr;
             }
+
             aside {
                 order: 2;
             }
+
             .sidebar-sticky {
                 position: static;
             }
         }
 
         @media (max-width: 768px) {
-            nav { padding: 0.75rem 1rem; }
-            .nav-links { display: none; }
+            nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
+
 <body>
     <nav>
         <a href="/" class="logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
             Tesla Mechanical Designs
         </a>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-            <svg id="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            <svg id="sun" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg id="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg id="sun" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
         </button>
     </nav>
 
@@ -303,39 +351,68 @@
     <div class="container">
         <main>
             <article class="post-content">
-                <p>Sheet metal DFM is about designing parts that can be formed cleanly, repeatably, and without unnecessary tooling complications. The goal is to ensure the part can be cut, bent, and assembled using standard shop methods while keeping costs and distortion under control.</p>
+                <p>Sheet metal <a
+                        href="https://www.teslamechanicaldesigns.com/blog/top-design-tips-for-design-for-manufacturing-dfm/"
+                        class="internal-link" title="Top Design Tips for Design for Manufacturing">DFM</a> is about
+                    designing parts that can be formed cleanly, repeatably, and without unnecessary tooling
+                    complications. The goal is to ensure the part can be cut, bent, and assembled using standard shop
+                    methods while keeping costs and distortion under control.</p>
 
-                <img src="images/sheet-metal.png" alt="A detailed 3D illustration of a sheet metal enclosure showing technical DFM features" loading="lazy">
+                <img src="images/sheet-metal.png"
+                    alt="A detailed 3D illustration of a sheet metal enclosure showing technical DFM features"
+                    loading="lazy">
 
                 <h2 id="why-sheet-metal-dfm">Why Sheet Metal DFM Matters</h2>
-                <p>Sheet metal parts are often chosen for their efficiency, lightweight design, and scalability. But those advantages disappear quickly if the design includes difficult bends, cramped features, or unnecessary forming steps. A design that ignores tooling limits usually becomes slower to produce and more expensive.</p>
+                <p>Sheet metal parts are often chosen for their efficiency, lightweight design, and scalability. But
+                    those advantages disappear quickly if the design includes difficult bends, cramped features, or
+                    unnecessary forming steps. A design that ignores tooling limits usually becomes slower to produce
+                    and more expensive.</p>
 
-                <p>Good sheet metal DFM reduces trial-and-error in fabrication and improves part consistency, regardless of batch size.</p>
+                <p>Good sheet metal DFM reduces trial-and-error in fabrication and improves part consistency, regardless
+                    of batch size.</p>
 
                 <h2 id="right-tooling">Choose the Right Tooling</h2>
-                <p>The first DFM decision is matching the design to the forming method. A press brake is usually better for low-volume work because the tooling cost is lower and the setup is faster. A progressive die is better suited to high-volume production because it can produce parts quickly and consistently, though the tooling cost is much higher.</p>
+                <p>The first DFM decision is matching the design to the forming method. A press brake is usually better
+                    for low-volume work because the tooling cost is lower and the setup is faster. A progressive die is
+                    better suited to high-volume production because it can produce parts quickly and consistently,
+                    though the tooling cost is much higher.</p>
 
-                <p>The wrong tooling choice can make a simple part unnecessarily expensive. So the design should support the intended production volume from the beginning.</p>
+                <p>The wrong tooling choice can make a simple part unnecessarily expensive. So the design should support
+                    the intended production volume from the beginning.</p>
 
                 <h2 id="foldability">Design for Foldability</h2>
-                <p>A sheet-metal part must be able to bend with standard tools. If the geometry requires internal flanges, inaccessible bends, or unusual forming sequences, the design should be reconsidered. Features that seem minor in CAD can become impossible or costly in the shop.</p>
+                <p>A sheet-metal part must be able to bend with standard tools. If the geometry requires internal
+                    flanges, inaccessible bends, or unusual forming sequences, the design should be reconsidered.
+                    Features that seem minor in CAD can become impossible or costly in the shop.</p>
 
-                <p>The safest approach is to keep the bend strategy simple and practical. Every extra bend increases risk, especially if the part must be formed with tight tolerances.</p>
+                <p>The safest approach is to keep the bend strategy simple and practical. Every extra bend increases
+                    risk, especially if the part must be formed with tight tolerances.</p>
 
                 <h2 id="spacing">Control Bend and Feature Spacing</h2>
-                <p>Spacing matters in sheet metal because closely placed features can interfere with bending and may distort during forming. Holes, slots, edges, and bends need enough separation to avoid deformation and cracking.</p>
+                <p>Spacing matters in sheet metal because closely placed features can interfere with bending and may
+                    distort during forming. Holes, slots, edges, and bends need enough separation to avoid deformation
+                    and cracking.</p>
 
-                <p>As a rule, the more compact the geometry, the more likely the part is to require special handling. When possible, place features far enough from bend lines to preserve formability and dimensional stability.</p>
+                <p>As a rule, the more compact the geometry, the more likely the part is to require special handling.
+                    When possible, place features far enough from bend lines to preserve formability and dimensional
+                    stability.</p>
 
                 <h2 id="simplicity">Reduce Unnecessary Complexity</h2>
-                <p>Every sheet-metal part should be checked for features that add cost without value. Extra bends, complicated cutouts, and poorly placed holes often increase setup time and scrap risk. If two simpler parts can perform the same job, the simpler solution is usually the better DFM choice.</p>
+                <p>Every sheet-metal part should be checked for features that add cost without value. Extra bends,
+                    complicated cutouts, and poorly placed holes often increase setup time and scrap risk. If two
+                    simpler parts can perform the same job, the simpler solution is usually the better DFM choice.</p>
 
-                <p>This is especially important when the part is part of a larger assembly. A small simplification in a single bracket or enclosure can significantly reduce the total fabrication effort.</p>
+                <p>This is especially important when the part is part of a larger assembly. A small simplification in a
+                    single bracket or enclosure can significantly reduce the total fabrication effort.</p>
 
                 <h2 id="material-considerations">Material and Thickness Considerations</h2>
-                <p>Material choice affects how well the part bends and how much springback it will have after forming. Thicker or harder materials often require more force and are less forgiving during bending operations. That means the design should account for the selected material early, not after the drawing is already finished.</p>
+                <p>Material choice affects how well the part bends and how much springback it will have after forming.
+                    Thicker or harder materials often require more force and are less forgiving during bending
+                    operations. That means the design should account for the selected material early, not after the
+                    drawing is already finished.</p>
 
-                <p>Thickness should also be kept consistent where possible. Large variations in sheet geometry can complicate forming and make the part harder to control.</p>
+                <p>Thickness should also be kept consistent where possible. Large variations in sheet geometry can
+                    complicate forming and make the part harder to control.</p>
 
 
 
@@ -378,7 +455,7 @@
         const toggleBtn = document.getElementById('theme-toggle');
         const sun = document.getElementById('sun');
         const moon = document.getElementById('moon');
-        
+
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
             sun.style.display = 'block';
@@ -399,7 +476,7 @@
         // TOC Generation Logic
         const tocList = document.getElementById('toc-list');
         const headers = document.querySelectorAll('main h2, main h3');
-        
+
         headers.forEach(header => {
             const li = document.createElement('li');
             const a = document.createElement('a');
@@ -408,11 +485,11 @@
             a.href = `#${id}`;
             a.textContent = header.textContent;
             li.appendChild(a);
-            
+
             if (header.tagName === 'H3') {
                 li.style.paddingLeft = '1rem';
             }
-            
+
             tocList.appendChild(li);
         });
     </script>
@@ -440,4 +517,5 @@
     }
     </script>
 </body>
+
 </html>
